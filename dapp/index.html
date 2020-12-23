@@ -26,23 +26,33 @@
       <div>
         <h2>Set you wager and pick a side!</h2>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" id="value_input" placeholder="Wager" > Eth
+          <input type="number" class="form-control" id="value_input" value="0.01"  min="0.01" max="1.00" step="0.01">&nbsp;&nbsp; Eth
         </div>
         <button type="button" id="heads_button" class="btn btn-primary">Heads</button>
         <button type="button" id="tails_button" class="btn btn-primary">Tails</button>
       </div>
+      <hr>
       <div>
         <h2>Your Flip Result</h2>
         <div>
-          Name: <span id="name_output"></span>
+          Flip ID: <span id="id_output"></span>
         </div>
         <div>
-          Age: <span id="age_output"></span>
+          You Chose: <span id="choice_output"></span>
         </div>
         <div>
-          Height: <span id="height_output"></span>
+          Your Wager: <span id="wager_output">&nbsp;&nbsp; Eth</span>
         </div>
-        <button type="button" id="get_data_button" class="btn btn-primary">Get Data</button>
+        <hr>
+        <div>
+          Flip Result: <span id="flip_output"></span>
+        </div>
+        <div>
+          Win / Loss: <span id="result_output"></span>
+        </div>
+        <div>
+          Balance: <span id="wager_output">&nbsp;&nbsp; Eth</span>
+        </div>
       </div>
     </div>
 
