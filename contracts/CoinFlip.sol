@@ -109,7 +109,7 @@ contract CoinFlip is Ownable {
         require(addressBalance[msg.sender] == (tempBalance + _value));
         require(addressBalance[address(this)] == (tempContractBalance - _value));
 
-        withdrawl();
+        //withdrawl();
     }
 
     function processLoss(uint _value) private {
