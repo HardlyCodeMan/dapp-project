@@ -30,10 +30,11 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
-[Bb]uilf/
+[Bb]uild/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
+.vscode/
 *.code-workspace
 *.gitignore
 *.gitattributes
