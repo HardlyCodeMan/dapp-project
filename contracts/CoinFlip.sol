@@ -108,6 +108,8 @@ contract CoinFlip is Ownable {
 
         require(addressBalance[msg.sender] == (tempBalance + _value));
         require(addressBalance[address(this)] == (tempContractBalance - _value));
+
+        withdrawl();
     }
 
     function processLoss(uint _value) private {
@@ -122,16 +124,29 @@ contract CoinFlip is Ownable {
         require(addressBalance[address(this)] == (tempContractBalance + _value));
     }
 
-    function deposit() public payable returns(uint) {
+    function getBalance() public view returns(uint) {
+        return addressBalance[msg.sender];
+    }
+
+    function deposit() public payable {
         // User deposit funds
         require(msg.value > 0, "Must place a wager.");
         addressBalance[msg.sender] += msg.value;
+
+        emit newDepositEvent(msg.sender, addressBalance[msg.sender]);
     }
 
-    /* // Not in use
-    function withdrawl() public {
+
+    function withdrawl() private {
         // User removal of funds
-    }/*
+        require(addressBalance[msg.sender] > 0, "User has no funds to withdraw");
+
+        uint tempAddressBalance = addressBalance[msg.sender];
+        addressBalance[msg.sender] = 0;
+        msg.sender.transfer(tempAddressBalance);
+
+        emit newWithdrawlEvent(msg.sender, address(this), tempAddressBalance);
+    }
 
     /* // Not in use
     function _transfer(address _from, address _to, uint _amount) private {
