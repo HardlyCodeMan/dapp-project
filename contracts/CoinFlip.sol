@@ -27,7 +27,7 @@ contract CoinFlip is Ownable {
 
     Flip[] public completedFlips;
 
-    mapping (address => uint) addressBalance;
+    mapping (address => uint) public addressBalance;
     //mapping (address => Flip) private flippers;
     //mapping (address => completedFlips[]);
 

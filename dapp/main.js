@@ -3,12 +3,11 @@ var contractInstance;
 
 $(document).ready(function() {
     window.ethereum.enable().then(function(accounts) {
-        contractInstance = new web3.eth.Contract(abi, "0x5373eeA71ec21C009eb1246F231178E27F59034C", {from: accounts[0]});
+        contractInstance = new web3.eth.Contract(abi, "0xa97614EEADBa4E05330947ae9C35224dd5ba839d", {from: accounts[0]});
         console.log(contractInstance);
     });
     $("#heads_button").click(flipHeads);
     $("#tails_button").click(flipTails);
-    //$("#results_button").click(fetchAndDisplay);
 });
 
 //
@@ -71,10 +70,11 @@ function flipTails() {
             //console.log("Receipt: " + JSON.stringify(receipt.events.newFlipResultEvent.returnValues._win));
             flip = receipt.events.newFlipEvent.returnValues;
             result = receipt.events.newFlipResultEvent.returnValues;
-            resultDisplay(flip, result);
 
-            console.log("Flip - " + flip);
-            console.log("Result - " + result);
+            console.log("Flip - " + JSON.stringify(flip));
+            console.log("Result - " + JSON.stringify(result));
+
+            resultDisplay(flip, result);
         })
 }
 
@@ -88,7 +88,7 @@ function resultDisplay(flip, result) {
 
     // Get balance from the blockchain
     contractInstance.methods.getBalance().call.then(function(balance) {
-        console.log("Balance: " + balance);
+        console.log("Balance: " + JSON.stringify(balance));
         $("#wager_output").text(web3.utils.fromWei(balance));
     })
 }
