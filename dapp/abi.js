@@ -269,9 +269,9 @@ var abi = [
     "type": "function"
   },
   {
-    "constant": false,
+    "constant": true,
     "inputs": [],
-    "name": "deposit",
+    "name": "getBalance",
     "outputs": [
       {
         "internalType": "uint256",
@@ -279,6 +279,15 @@ var abi = [
         "type": "uint256"
       }
     ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "deposit",
+    "outputs": [],
     "payable": true,
     "stateMutability": "payable",
     "type": "function"

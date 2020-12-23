@@ -3,13 +3,17 @@ var contractInstance;
 
 $(document).ready(function() {
     window.ethereum.enable().then(function(accounts) {
-        contractInstance = new web3.eth.Contract(abi, "0xA298622F83f7781f565B39b1BFb97344D67E2251", {from: accounts[0]});
+        contractInstance = new web3.eth.Contract(abi, "0xe26300C8618cB9168Ab2D8277418F5348cA18853", {from: accounts[0]});
         console.log(contractInstance);
     });
     $("#heads_button").click(flipHeads);
     $("#tails_button").click(flipTails);
     //$("#results_button").click(fetchAndDisplay);
 });
+
+//
+// Receive jQuery error when attempting to combine the 2 flip functions into 1 and pass an int to define heads or tails
+//
 
 function flipHeads() {
     // Form inputs
@@ -72,10 +76,14 @@ function flipTails() {
 }
 
 function resultDisplay(flip, result) {
+    // Get balance from the blockchain
+    contractInstance.methods.getbalance().call.then(function(balance) {
+
         $("#id_output").text(flip._id);
         $("#choice_output").text(flip._expected);
         $("#wager_output").text(web3.utils.fromWei(flip._value));
         $("#flip_output").text(result._result);
         $("#result_output").text(result._win);
-        $("#wager_output").text(web3.utils.fromWei(result._value));
+        $("#wager_output").text(web3.utils.fromWei(balance));
+    })
 }
