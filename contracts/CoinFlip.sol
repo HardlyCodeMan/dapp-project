@@ -52,6 +52,7 @@ contract CoinFlip is Ownable {
         uint _resultInt;
         uint _value = msg.value;
         bool _win;
+        uint _winnings;
 
         uint _randomFlip = randomFlip(_id, _user, _expected, _expectedInt, _value);
         require(_randomFlip == 0 || _randomFlip == 1, "Flip randomness error.");
@@ -67,9 +68,11 @@ contract CoinFlip is Ownable {
         if(_expectedInt == _resultInt) {
             _win = true;
             processWin(_value);
+            _winnings = 2 * _value;
         } else {
             _win = false;
             processLoss(_value);
+            _winnings = 0;
         }
 
         Flip memory newFlip;
@@ -84,7 +87,7 @@ contract CoinFlip is Ownable {
 
         completedFlips.push(newFlip);
 
-        emit newFlipResultEvent(_id, _user, _result, _resultInt, _win, _value);
+        emit newFlipResultEvent(_id, _user, _result, _resultInt, _win, _winnings);
     }
 
     function randomFlip(uint _id, address _user, string memory _expected, uint _expectedInt, uint _value) public returns (uint) {
@@ -125,7 +128,19 @@ contract CoinFlip is Ownable {
     }
 
     function getBalance() public view returns(uint) {
-        return addressBalance[msg.sender];
+        if(addressBalance[msg.sender] > 0) {
+            return addressBalance[msg.sender];
+        } else {
+            return 0;
+        }
+    }
+
+    function getContractBalance() public view onlyOwner returns(uint) {
+        if(addressBalance[address(this)] > 0) {
+            return addressBalance[address(this)];
+        } else {
+            return 0;
+        }
     }
 
     function deposit() public payable {
