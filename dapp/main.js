@@ -14,6 +14,8 @@ $(document).ready(function() {
 // Receive jQuery error when attempting to combine the 2 flip functions into 1 and pass an int to define heads or tails
 //
 
+// console.log does not seem to be outputting every flip
+
 function flipHeads() {
     // Form inputs
     var _value = $("#value_input").val();
@@ -29,7 +31,7 @@ function flipHeads() {
     contractInstance.methods.newCoinFlip(_expected, _expectedInt).send(sendConfig)
         // Gett the tx hash
         .on("transactionHash", function(hash) {
-            //console.log("Tx Hash: " + hash);
+            console.log("Tx Hash: " + hash);
         })
         // Get tx confirmations, min 12 recommended for mainnet
         .on("confirmation", function(confirmationNr) {
