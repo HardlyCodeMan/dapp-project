@@ -1,0 +1,25 @@
+{
+  "name": "coinflip-dapp-project",
+  "version": "0.1.0",
+  "description": "Ivan Academy Solidity 201 Dapp Project",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HardlyCodeMan/dapp-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HardlyCodeMan/dapp-project/issues"
+  },
+  "homepage": "https://github.com/HardlyCodeMan/dapp-project#readme",
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^1.2.1"
+  }
+}
