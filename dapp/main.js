@@ -42,6 +42,10 @@ function flipHeads() {
             //console.log("Receipt: " + JSON.stringify(receipt.events.newFlipResultEvent.returnValues._win));
             flip = receipt.events.newFlipEvent.returnValues;
             result = receipt.events.newFlipResultEvent.returnValues;
+
+            console.log("Flip - " + JSON.stringify(flip));
+            console.log("Result - " + JSON.stringify(result));
+
             resultDisplay(flip, result);
         })
 }
@@ -49,8 +53,8 @@ function flipHeads() {
 function flipTails() {
     // Form inputs
     var _value = $("#value_input").val();
-    var _expected = "Heads";
-    var _expectedInt = 0;
+    var _expected = "Tails";
+    var _expectedInt = 1;
     
     // Metamask signing params
     var sendConfig = {
@@ -61,7 +65,7 @@ function flipTails() {
     contractInstance.methods.newCoinFlip(_expected, _expectedInt).send(sendConfig)
         // Gett the tx hash
         .on("transactionHash", function(hash) {
-            //console.log("Tx Hash: " + hash);
+            console.log("Tx Hash: " + hash);
         })
         // Get tx confirmations, min 12 recommended for mainnet
         .on("confirmation", function(confirmationNr) {
